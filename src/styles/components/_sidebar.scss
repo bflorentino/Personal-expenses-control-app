@@ -1,6 +1,5 @@
 .sidebar__cont {
-    min-width: 15%;
-    max-width: 30%;
+    width: 20%;
     height: 100vh;
     border-right: 2px solid $primary;
     display: none;
@@ -16,8 +15,22 @@
     @extend %flex-column;
     width: 100%;
 }
-.sidebar__linkItem {
+.sidebar__listItemTitle {
     @extend %flex-row-between;
+    font-size: 17px;
+
+    &:hover{
+        background-color: $primary;
+        border-radius: 6px;
+    }
+}
+.sidebar__linkItem {
+    font-size: 17px;
+
+    &:hover{
+        background-color: $primary;
+        border-radius: 6px;
+    }
 }
 
 // Sidebar Modal
@@ -31,9 +44,6 @@
 .modal__header {
     @extend %flex-row-between;
 }
-// Media queries
-@media only screen and (min-width:800px){
-    .sidebar__cont {
-        display: flex;
-    }
+.sidebar__dropdownList{
+    @extend %flex-column
 }

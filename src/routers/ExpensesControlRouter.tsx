@@ -15,11 +15,11 @@ const ExpensesControlRouter = () => {
 
   return (
     <>
-    {
-      opened && <SidebarModal />
-    }
     <Header/>
-    <Sidebar />
+    {
+      opened ? <SidebarModal />
+             : <Sidebar />
+    }
       <Routes >
         <Route path='/expenseView' element={<ExpenseViewPage />} />
         <Route path='/expenseAdd' element={<ExpenseAddPage />}/>
