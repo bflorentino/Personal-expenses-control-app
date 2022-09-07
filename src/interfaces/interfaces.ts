@@ -12,3 +12,8 @@ export interface IServerRes {
     success : boolean,
     statusType? : number
 }
+
+export interface IMenuProps {
+    setIsMenuOpen: (menuOpen: boolean) => void,
+    isMenuOpen?: boolean
+}

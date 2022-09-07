@@ -1,0 +1,39 @@
+.sidebar__cont {
+    min-width: 15%;
+    max-width: 30%;
+    height: 100vh;
+    border-right: 2px solid $primary;
+    display: none;
+
+    @media only screen and (min-width:800px){
+        display: flex;
+    }
+}
+.sidebar__listItem {
+    font-size: 20px;
+}
+.sidebar__list {
+    @extend %flex-column;
+    width: 100%;
+}
+.sidebar__linkItem {
+    @extend %flex-row-between;
+}
+
+// Sidebar Modal
+.modal__content {
+    @extend %flex-column;
+    background-color: white;
+    width: 65%;
+    max-width: 350px;
+    padding-right: 15px;
+}
+.modal__header {
+    @extend %flex-row-between;
+}
+// Media queries
+@media only screen and (min-width:800px){
+    .sidebar__cont {
+        display: flex;
+    }
+}

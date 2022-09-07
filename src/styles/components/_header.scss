@@ -1,0 +1,15 @@
+header{
+    align-items: center;
+    border-bottom: 1px solid $primary;
+    display: flex;
+    padding:18px 10px;
+    width: 100%;
+}
+
+.btn__header {
+    @extend %flex-row;
+
+    @media only screen and (min-width:800px){
+            display: none;
+    }
+}
