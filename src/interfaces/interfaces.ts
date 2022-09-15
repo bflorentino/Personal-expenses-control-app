@@ -17,3 +17,8 @@ export interface IMenuProps {
     setIsMenuOpen: (menuOpen: boolean) => void,
     isMenuOpen?: boolean
 }
+
+export interface IValidationFinancialData {
+    conceptMessage?:string | null 
+    amountMessage?:string | null,       
+}

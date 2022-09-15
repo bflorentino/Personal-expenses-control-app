@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-export const useForm = (initialState = {}) => {
+export const useForm = (initialState:any) => {
 
-    const [formValues, setFormValues] = useState(initialState)
+    const [formValues, setFormValues] = useState<any>(initialState)
     
     const handleInputChanges = ({ target }: any) =>{
         setFormValues({

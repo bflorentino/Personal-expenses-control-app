@@ -1,8 +1,9 @@
 import React from 'react'
+import FinancialRegistrationForm from '../../forms/FinancialRegistrationForm'
 
 const ExpenseAddPage = () => {
   return (
-    <div>ExpenseAddPage</div>
+   <FinancialRegistrationForm />
   )
 }
 
