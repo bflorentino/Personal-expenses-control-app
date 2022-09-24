@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useState, useCallback } from "react"
 
 export const useForm = (initialState:any) => {
 
-    const [formValues, setFormValues] = useState<any>(initialState)
+    const [formValues, setFormValues] = useState({...initialState})
     
     const handleInputChanges = ({ target }: any) =>{
         setFormValues({
@@ -11,9 +11,9 @@ export const useForm = (initialState:any) => {
         })
     }
     
-    const reset = () => {
-        setFormValues(initialState)
-    }
+    const reset = useCallback(() => {
+        setFormValues({...initialState})
+    }, [initialState])
     
     return [formValues, handleInputChanges, reset]
 }

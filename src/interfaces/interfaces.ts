@@ -3,7 +3,7 @@ export interface IUseFetch  {
     url: string | null,
     method: string | null,
     headers: object | null | undefined
-    body: object | null | undefined
+    body: string | null | undefined
 }
 
 export interface IServerRes {
@@ -19,6 +19,6 @@ export interface IMenuProps {
 }
 
 export interface IValidationFinancialData {
-    conceptMessage?:string | null 
-    amountMessage?:string | null,       
+    conceptMessage?:string | null | false
+    amountMessage?:string | null | false,       
 }

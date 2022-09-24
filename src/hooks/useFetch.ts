@@ -17,7 +17,7 @@ const initialFetchResultState: IServerRes = {
 export const useFetch = () => {
     
     const [ fetchValues, setFetchValues ] = useState<IUseFetch>(initialFetchValuesState);
-    const [resultFetch, setResultFetch ] = useState<IServerRes>(initialFetchResultState)
+    const [resultFetch, setResultFetch ] = useState<IServerRes | null >(null)
     
     const fetchData = useCallback(async () => {
 
@@ -28,7 +28,7 @@ export const useFetch = () => {
         }
         
         const result =  await fetch(fetchValues.url as unknown as URL, request as unknown as RequestInit)
-        return result.json()
+        return await result.json()
 
     },[fetchValues] )
 
@@ -47,7 +47,7 @@ export const useFetch = () => {
         }
     }, [fetchValues, fetchData ])
 
-    const handleFetchValues = useCallback((url:string, method:string, headers: undefined | object, body:undefined | object ) => {
+    const handleFetchValues = useCallback((url:string, method:string, headers: undefined | object, body:undefined | string ) => {
         setFetchValues({
             url,
             method,
@@ -56,5 +56,5 @@ export const useFetch = () => {
         })
     }, [])
 
-    return [ handleFetchValues, resultFetch, resetFetchValues ]
+    return { handleFetchValues, resultFetch, resetFetchValues }
 }

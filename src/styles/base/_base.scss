@@ -34,6 +34,7 @@ body::-webkit-scrollbar-thumb {
 #root{
     display: flex;
     flex-wrap: wrap;
+    overflow: auto;
 }
 
 // Margin Top
@@ -75,6 +76,11 @@ body::-webkit-scrollbar-thumb {
 .pl-1{
     padding-left: 10px;
 }
+
+.px-1{
+    padding-left: 5px;
+    padding-right: 5px;
+}
  
 // Text Colors
 .text-black {
@@ -114,6 +120,9 @@ body::-webkit-scrollbar-thumb {
 }
 .text-center {
     text-align: center;
+}
+.text-right {
+    text-align: right;
 }
 
 // Width

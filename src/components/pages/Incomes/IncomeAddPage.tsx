@@ -1,8 +1,9 @@
 import React from 'react'
+import FinancialRegistrationForm from '../../forms/FinancialRegistrationForm'
 
 const IncomeAddPage = () => {
   return (
-    <div>IncomeAddPage</div>
+    <FinancialRegistrationForm financialType={'income'} />
   )
 }
 

@@ -1,8 +1,8 @@
 import { IValidationFinancialData } from "../interfaces/interfaces";
 
 const errors:IValidationFinancialData = {
-    conceptMessage: null,
-    amountMessage: null
+    conceptMessage: false,
+    amountMessage: false
 }
 
 export const validateFinancialData = (e:any) => {

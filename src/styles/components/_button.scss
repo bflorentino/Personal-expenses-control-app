@@ -3,3 +3,19 @@
     border: none;
     outline: none;
 }
+
+.primary {
+    background-color: $secondary;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 7px;
+    font-size: 17px;
+
+    &:hover{
+        background-color: darken($secondary, 10%);
+    }
+
+    &:disabled {
+        background-color: #ccc;
+    }
+}

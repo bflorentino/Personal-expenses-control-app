@@ -1,6 +1,6 @@
 .sidebar__cont {
     width: 20%;
-    height: 100vh;
+    height: 94vh;
     border-right: 2px solid $primary;
     display: none;
 
@@ -36,7 +36,7 @@
 // Sidebar Modal
 .modal__content {
     @extend %flex-column;
-    background-color: white;
+    background-color: $white;
     width: 65%;
     max-width: 350px;
     padding-right: 15px;

@@ -23,8 +23,8 @@ const ExpensesControlRouter = () => {
       <Routes >
         <Route path='/expenseView' element={<ExpenseViewPage />} />
         <Route path='/expenseAdd' element={<ExpenseAddPage />}/>
-        <Route path='/incomeAdd' element={<IncomeViewPage />}/>
-        <Route path='/incomeView' element={<IncomeAddPage />}/>
+        <Route path='/incomeAdd' element={<IncomeAddPage />}/>
+        <Route path='/incomeView' element={<IncomeViewPage />}/>
       </Routes>
     </>
   )

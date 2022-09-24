@@ -3,7 +3,7 @@ import FinancialRegistrationForm from '../../forms/FinancialRegistrationForm'
 
 const ExpenseAddPage = () => {
   return (
-   <FinancialRegistrationForm />
+   <FinancialRegistrationForm financialType={'expense'} />
   )
 }
 
