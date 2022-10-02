@@ -1,9 +1,11 @@
 import { configureStore  } from "@reduxjs/toolkit";
+import financialSlice from "../reducers/financialSlice";
 import sidebarSlice from "../reducers/sidebarSlice";
 
 export const store = configureStore({
     reducer: {
-        sidebar: sidebarSlice
+        sidebar: sidebarSlice,
+        financial: financialSlice
     }
 })
 

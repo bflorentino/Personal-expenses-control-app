@@ -1,0 +1,48 @@
+.table_container {
+    width: 79%;
+    overflow-x: auto;
+    min-width: 600px;
+    @extend %flex-column-centered
+}
+
+table {
+    margin-top: 35px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 70%;
+}
+
+thead {
+    border: 1px solid $light-gray;
+}
+
+.table_greenThead{
+    background-color: $light-green;
+}
+
+.table_blueThead {
+    background-color: $light-blue;
+}
+
+
+thead th:nth-child(1){
+    width: 50%;
+}
+
+thead th:nth-child(2){
+    width: 25%;
+}
+
+thead th:nth-child(3){
+    width: 25%;
+}
+
+tbody {
+    background-color: $light-gray2;
+}
+
+th, td{
+    padding: 10px 15px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid $light-gray;
+}
