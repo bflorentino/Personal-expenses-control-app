@@ -20,7 +20,10 @@ export interface IMenuProps {
 
 export interface IValidationFinancialData {
     conceptMessage?:string | null | false
-    amountMessage?:string | null | false,       
+    amountMessage?:string | null | false,
+    personNameMessage?:string | null,
+    loanIdMessage?:string | null,
+    transactionTypeMessage ?: string | null | false
 }
 
 export interface IFinancialData  {

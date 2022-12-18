@@ -1,29 +1,54 @@
 import { IValidationFinancialData } from "../interfaces/interfaces";
 
-const errors:IValidationFinancialData = {
-    conceptMessage: false,
-    amountMessage: false
-}
+export const validateFinancialData = (e:any, errors:IValidationFinancialData) => {
 
-export const validateFinancialData = (e:any) => {
+    const errorsCopy = {...errors}
+
+    switch (e.target.name) {
+        
+        case "concept":
+            errorsCopy.conceptMessage = null;
+
+            if(e.target.value === "")
+                errorsCopy.conceptMessage = "The concept is required. Please fill the input"
+            
+            break;
+        
+        case "amount":
+            errorsCopy.amountMessage = null;
+            
+            if(e.target.value <= 0)
+                errorsCopy.amountMessage = "Please, fill the input with a valid amount"
+            
+            break;
+
+        case "personName":
+            errorsCopy.personNameMessage = null
+
+            if(e.target.value === "")
+                errorsCopy.personNameMessage = "Please, fill the input with the name of the person involved in the loan"
     
-    if(e.target.name === "concept" ){
+            break;
 
-        if(e.target.value === ""){
-            errors.conceptMessage = "The concept is required. Please fill the input"
-        }else{
-            errors.conceptMessage = null;
-        }
+        case "loanId":
+            errorsCopy.loanIdMessage = null
+
+            if(e.target.value === "")
+                errorsCopy.loanIdMessage = "Please, select the load involved in this transaction"
+
+            break
+
+        case "transactionType":
+            errorsCopy.transactionTypeMessage = null
+
+            if(e.target.value === "")
+                errorsCopy.transactionTypeMessage = "Please, select the kind of transaction"
+            
+            break
+
+        default:
+            break;
     }
-
-    if(e.target.name === "amount"){
-
-        if(e.target.value <= 0){
-            errors.amountMessage = "Please, fill the input with a valid amount"
-        }else{
-            errors.amountMessage = null;
-        }
-    }
-
-    return errors
+    
+    return errorsCopy
 }

@@ -15,7 +15,7 @@ const ExpenseViewPage = () => {
     handleFetchValues(`${BASE_URL}FinancialData/get/byMonth/expense`, 
                       'POST', 
                       {'Content-Type': 'application/json'}, 
-                       JSON.stringify({month: 10, year: 2022}));
+                      JSON.stringify({month: new Date().getMonth(), year: new Date().getFullYear()}));
     
   },[handleFetchValues])
 

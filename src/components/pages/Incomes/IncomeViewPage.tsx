@@ -17,7 +17,7 @@ const IncomeViewPage = () => {
     handleFetchValues(`${BASE_URL}FinancialData/get/byMonth/income`, 
                       'POST', 
                       {'Content-Type': 'application/json'}, 
-                       JSON.stringify({month: 8, year: 2022}));
+                       JSON.stringify({month: new Date().getMonth(), year: new Date().getFullYear()}));
     
   },[handleFetchValues])
 
