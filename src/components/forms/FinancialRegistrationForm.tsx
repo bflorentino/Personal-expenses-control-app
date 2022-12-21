@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 import { useForm } from '../../hooks/useForm'
-import {  validateFinancialData } from '../../validations/financial'
-import { IValidationFinancialData } from '../../interfaces/interfaces'
 import { useFetch } from '../../hooks/useFetch'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxhooks'
+import { setLoans } from '../../reducers/loansSlice'
+
+import { IValidationFinancialData } from '../../interfaces/interfaces'
+import {  validateFinancialData } from '../../validations/financial'
 import BASE_URL, {expenseTypes, incomeTypes} from '../../constants/constants'
 import Swal from 'sweetalert2'
 
@@ -20,7 +23,6 @@ const errorsTemplate:IValidationFinancialData = {
 const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 'income'}) => {
   
   const now = new Date();
-
   const history = useNavigate();
 
   const [ formValues, handleOnChanges ] = useForm({
@@ -33,7 +35,9 @@ const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 
   })
 
   const { handleFetchValues, resultFetch }  = useFetch();
-  
+  const dispatch = useAppDispatch()
+  const loansSelector = useAppSelector(state => state.loans.data)
+  const isStarted = useRef(false)
   const [ errors, setErrors ] = useState<IValidationFinancialData>({...errorsTemplate})
   const [ disabled, setDisabled ] = useState<boolean>(true);
   
@@ -46,8 +50,6 @@ const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 
 
     const errorFound = Object.values(errors).find(err => err !== null)
 
-    console.log(errorFound)
-
     if(!errorFound){
       setDisabled(false);
       return;
@@ -56,18 +58,38 @@ const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 
     setDisabled(true);
   }, [errors])
 
+  useEffect(()=>{
+    if(!isStarted.current){
+      handleFetchValues(`${BASE_URL}loans`, 'GET', undefined, undefined )
+    }
+  },[handleFetchValues])
+
   useEffect(() => {
     
     if(resultFetch === null){
       return;
     }
 
-    if(resultFetch.success === true){
-      Swal.fire("Success", `${financialType.toUpperCase()} was added successfully`, "success");
-      history(`/ExpensesControl/${financialType}View`);
+    // First, get active loans
+    if(!isStarted.current)
+    {
+      if(resultFetch.success){
+        dispatch(setLoans(resultFetch.data))
+        isStarted.current = true
+      }
+      return
     }
 
-  }, [resultFetch, financialType, history ])
+    // Save data
+    if(resultFetch.success){
+        Swal.fire("Success", resultFetch.message as string, "success");
+        history(`/ExpensesControl/${financialType}View`);
+        return
+      }
+
+      Swal.fire("Error Saving", resultFetch.message as string, "error");
+
+  }, [resultFetch, financialType, history,  dispatch ])
 
   const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     
@@ -156,6 +178,35 @@ const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 
 
           {
             errors.transactionTypeMessage && <p className='text-red text-left'>{errors.transactionTypeMessage}</p>
+          }
+         </div>
+
+        <div className='FinancialForm__div'>
+
+          <select 
+            name= "loanId" 
+            value={formValues.loanId }
+            disabled={parseInt(formValues.transactionType) !== 3}
+            className= {`mt-3 FinancialForm__inp px-1 ${errors.loanIdMessage  && 'inpError'}`}
+            onChange={handleOnChanges}
+            onBlur={handleOnBlur}
+          >
+            <option value="" selected>Pick the corresponding Loan </option>
+            {
+              financialType === "expense" 
+                ?
+                loansSelector.map(loan => (
+                 !loan.isLender && <option key={loan._id} value={loan._id}>{`${loan.personName} -- Balance Restante a pagar => ${loan.balance}`}</option>
+                ))
+                :
+                loansSelector.map(loan => (
+                  loan.isLender &&  <option key={loan._id} value={loan._id}>{`${loan.personName} -- Balance Restante a recibir => ${loan.balance}`}</option>
+                ))
+            }
+          </select>
+
+          {
+            errors.loanIdMessage && <p className='text-red text-left'>{errors.loanIdMessage}</p>
           }
          </div>
          

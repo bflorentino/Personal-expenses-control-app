@@ -30,6 +30,21 @@ export interface IFinancialData  {
     amount : number,
     concept: string,
     fulldate? : string,
+    expenseType: number,
+    incomeType: number,
+    day: number,
+    month: number,
+    year: number,
+    __v?: number,
+    _id?: string
+}
+
+export interface ILoans  {
+    amount : number,
+    balance: number,
+    personName: string,
+    fulldate? : string,
+    isLender: boolean,
     day: number,
     month: number,
     year: number,

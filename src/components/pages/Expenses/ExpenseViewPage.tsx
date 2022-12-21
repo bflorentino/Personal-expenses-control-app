@@ -24,6 +24,7 @@ const ExpenseViewPage = () => {
     if(resultFetch === null) return;
 
     if(resultFetch.success){
+      console.log(resultFetch.data)
       dispatch(setData(resultFetch.data))
     }
 

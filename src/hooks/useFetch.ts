@@ -26,8 +26,8 @@ export const useFetch = () => {
             headers: fetchValues.headers ? fetchValues.headers : undefined,
             body: fetchValues.body ? fetchValues.body : undefined,
         }
-        
         const result =  await fetch(fetchValues.url as unknown as URL, request as unknown as RequestInit)
+        console.log(result)
         return await result.json()
 
     },[fetchValues] )
