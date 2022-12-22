@@ -28,7 +28,7 @@ const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 
   const [ formValues, handleOnChanges ] = useForm({
     concept : "",
     amount: "",
-    date: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
+    fulldate: `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`,
     personName : "",
     transactionType:"",
     loanId:""
@@ -96,13 +96,13 @@ const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 
     e.preventDefault()
 
     const URL = `${BASE_URL}FinancialData/add/${financialType}`
-    const dataToAdd = {...formValues}
 
-    const dateValues = dataToAdd.date.split("/");
-    const date = new Date(`${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`);
-    dataToAdd.year = date.getFullYear();
-    dataToAdd.month = date.getMonth() + 1;
-    dataToAdd.day = date.getDay();
+    const dataToAdd = {...formValues}
+    const dateValues = dataToAdd.fulldate.split("-");
+
+    dataToAdd.year =  dateValues[0];
+    dataToAdd.month = dateValues[1];
+    dataToAdd.day =   dateValues[2]
 
     financialType === "expense" 
       ? dataToAdd.expenseType = parseInt(dataToAdd.transactionType) 
@@ -230,8 +230,8 @@ const FinancialRegistrationForm = ({financialType}: {financialType: 'expense' | 
          <div className='FinancialForm__div'>
           <input 
             type={inputType.date} 
-            name='date' 
-            value = {formValues.date}
+            name='fulldate' 
+            value = {formValues.fulldate}
             onChange={handleOnChanges}
             autoComplete="off"
             className= "mt-3 FinancialForm__inp px-1"

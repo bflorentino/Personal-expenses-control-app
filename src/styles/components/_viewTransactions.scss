@@ -1,0 +1,10 @@
+
+.view_Transactions_container {
+  @extend %flex-column;
+  width:79%;  
+}
+
+.view_Transactions_filter{
+  @extend %flex-row;
+  width: 100%;
+}

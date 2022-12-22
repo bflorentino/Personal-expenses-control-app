@@ -18,6 +18,11 @@ export interface IMenuProps {
     isMenuOpen?: boolean
 }
 
+export interface IFilters {
+    setCurrentDate: (currentDate: string) => void,
+    currentDate?: string
+}
+
 export interface IValidationFinancialData {
     conceptMessage?:string | null | false
     amountMessage?:string | null | false,
@@ -29,12 +34,13 @@ export interface IValidationFinancialData {
 export interface IFinancialData  {
     amount : number,
     concept: string,
-    fulldate? : string,
+    fulldate: Date,
     expenseType: number,
     incomeType: number,
     day: number,
     month: number,
     year: number,
+    transactionType:string,
     __v?: number,
     _id?: string
 }
