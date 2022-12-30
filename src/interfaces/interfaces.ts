@@ -57,3 +57,8 @@ export interface ILoans  {
     __v?: number,
     _id?: string
 }
+
+export type Transactions = {
+    totalAmount: number,
+    transactions: IFinancialData[]
+}

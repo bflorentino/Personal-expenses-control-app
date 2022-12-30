@@ -1,20 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { State } from "../store/store";
-import { IFinancialData } from "../interfaces/interfaces";
-        
-const initialState:{data:IFinancialData[]} = {
-    data: []
+import { Transactions } from "../interfaces/interfaces";
+
+const initialState:{data:Transactions} = {
+    data: {transactions:[], totalAmount:0}
 };
 
 export const financialSlice = createSlice({
     name: 'financial',
     initialState,
     reducers: {
-        setData: (state, action: PayloadAction<IFinancialData[]>) => {
-            state.data = [...action.payload]
+        setData: (state, action: PayloadAction<Transactions>) => {
+            state.data = {...action.payload}
         },
         removeData: state => {
-            state.data = []
+            state.data = {...initialState.data}
         }    
     }
 })
